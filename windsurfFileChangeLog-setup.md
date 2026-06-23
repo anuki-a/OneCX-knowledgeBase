@@ -1,0 +1,28 @@
+# Windsurf File Change Log
+
+documentation/windsurfFileChangeLog-setup.md file tracks all automated file creations and modifications done to /CC and /Common folders performed by the Windsurf AI assistant.
+
+## Change Log
+
+| Timestamp (UTC) | Action | File Path | Description of Change / Purpose | Previous Content |  New Content |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 2026-06-23 13:30 | **Updated** | `CC/CustomerConnection/src/Services/Appointment/Appointment.Application/Appointment.Application.csproj` | Updated Kronos.FMSI.Common.Integration version to 1.23.279.5 to resolve package downgrade error | Version="1.23.279.4" | Version="1.23.279.5" |
+| 2026-06-23 13:29 | **Updated** | `CC/CustomerConnection/src/Services/SharedKernel/CC.SharedKernel/CC.SharedKernel.csproj` | Updated Kronos.FMSI.Common.Integration package version to include IAutoWrapUpedLobbyEntry interface updates | Version="1.23.279.4" | Version="1.23.279.5" |
+| 2026-06-23 13:28 | **Updated** | `Common/Kronos.FMSI.Common/Kronos.FMSI.Common.Integration/Kronos.FMSI.Common.Integration.csproj` | Incremented version to 1.23.279.5 to include IAutoWrapUpedLobbyEntry interface updates | Version="1.23.279.4" | Version="1.23.279.5" |
+| 2026-06-23 13:52 | **Updated** | `Common/Kronos.FMSI.Common/Kronos.FMSI.Common.Integration/Events/CC/Lobby/ILobbyAutoWrapUpCompletedEvent.cs` | Fixed AppointmentId type to long? (nullable) to match existing Lobby implementation | long AppointmentId | long? AppointmentId |
+| 2026-06-23 13:27 | **Updated** | `Common/Kronos.FMSI.Common/Kronos.FMSI.Common.Integration/Events/CC/Lobby/ILobbyAutoWrapUpCompletedEvent.cs` | Added missing AppointmentId and HasProductAndServiceProvided properties to IAutoWrapUpedLobbyEntry interface | Interface with 3 properties | Interface with 5 properties (added long AppointmentId, bool HasProductAndServiceProvided) |
+| 2026-06-23 13:27 | **Updated** | `CC/CustomerConnection/src/Services/Appointment/Appointment.Application/IntegrationEvents/Events/AppointmentAutoWrapUpCompletedIntegrationEvent.cs` | Changed interface from IAppointmentAutoWrapUpCompletedEvent to IBCAppointmentAutoWrapUpCompletedEvent to match actual property signature | IAppointmentAutoWrapUpCompletedEvent | IBCAppointmentAutoWrapUpCompletedEvent |
+| 2026-06-23 13:00 | **Updated** | `CC/CustomerConnection/src/Services/Lobby/Lobby.API/EventConsumers/AppointmentAutoWrapUpCompletedEvent.cs` | Fixed interface mismatch - updated consumer to use IBCAppointmentAutoWrapUpCompletedEvent to match registered handler and resolve DI runtime failure | IConsumer<IAppointmentAutoWrapUpCompletedEvent>, IIntegrationEventHandler<IAppointmentAutoWrapUpCompletedEvent> | IConsumer<IBCAppointmentAutoWrapUpCompletedEvent>, IIntegrationEventHandler<IBCAppointmentAutoWrapUpCompletedEvent> |
+| 2026-06-23 13:00 | **Updated** | `CC/CustomerConnection/src/Services/Lobby/Lobby.API/Startup.cs` | Fixed service registration to use IBCAppointmentAutoWrapUpCompletedEvent to match handler implementation | IIntegrationEventHandler<IAppointmentAutoWrapUpCompletedEvent> | IIntegrationEventHandler<IBCAppointmentAutoWrapUpCompletedEvent> |
+| 2026-06-23 13:00 | **Updated** | `CC/CustomerConnection/src/Services/Lobby/Lobby.Application/IntegrationEvents/EventHandlers/BCAppointmentAutoWrapUpCompletedEventHandler.cs` | Fixed interface mismatch - handler was using .AutoWrapUpedAppointment property which only exists in IBCAppointmentAutoWrapUpCompletedEvent, not IAppointmentAutoWrapUpCompletedEvent | IIntegrationEventHandler<IAppointmentAutoWrapUpCompletedEvent>, Handle(IAppointmentAutoWrapUpCompletedEvent) | IIntegrationEventHandler<IBCAppointmentAutoWrapUpCompletedEvent>, Handle(IBCAppointmentAutoWrapUpCompletedEvent) |
+| 2026-06-22 12:57 | **Updated** | `CC/CustomerConnection/src/Services/Appointment/Appointment.Application/Appointment.Application.csproj` | Updated Kronos.FMSI.Common.Integration version to 1.23.279.4 to resolve package downgrade error (CC.SharedKernel requires 1.23.279.4) | Version="1.23.279.2" | Version="1.23.279.4" |
+| 2026-06-22 11:35 | **Updated** | `Common/Kronos.FMSI.Security/src/Kronos.FMSI.Security.Cryptography/Kronos.FMSI.Security.Cryptography.csproj` | Version updated to 1.22.212.4 to match Common folder requirements | <Version>1.0.1</Version> | <Version>1.22.212.4</Version> |
+| 2026-06-22 11:30 | **Updated** | `Common/Kronos.FMSI.Security/src/Kronos.FMSI.Security.Authentication/Kronos.FMSI.Security.Authentication.csproj` | Version updated to 1.22.75.3 to match Common folder requirements | <Version>1.0.1</Version> | <Version>1.22.75.3</Version> |
+| 2026-06-22 11:30 | **Updated** | `Common/Kronos.FMSI.Security/src/Kronos.FMSI.Security.Authorization/Kronos.FMSI.Security.Authorization.csproj` | Version updated to 1.22.75.3 to match Common folder requirements | <Version>1.0.1</Version> | <Version>1.22.75.3</Version> |
+| 2026-06-22 11:30 | **Updated** | `Common/Kronos.FMSI.Security/src/Kronos.FMSI.Security.Common/Kronos.FMSI.Security.Common.csproj` | Version updated to 1.22.75.3 to match Common folder requirements | <Version>1.0.1</Version> | <Version>1.22.75.3</Version> |
+| 2026-06-22 11:00 | **Created** | `.windsurfrules` | Version changed done for Kronos.FMSI.Security.Authentication to match required vesion in Common folder| <Version>1.0.1</Version> | <Version>1.22.75.3</Version> |
+| 2026-06-22 10:45 | **Updated** | `src/components/Button.tsx` | Fixed padding issues and added onClick type definitions. | N/A | N/A |
+| 2026-06-22 10:15 | **Created** | `documentation/windsurfFileChangeLog-setup.md` | Initialized the change log file. | N/A | N/A |
+
+---
+*End of Log. New entries should be prepended to the top of the table.*
